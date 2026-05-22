@@ -299,5 +299,7 @@ def apple_icon():
     return send_from_directory('.', 'apple-touch-icon.png', mimetype='image/png')
 
 if __name__ == "__main__":
-    print("Starting server on http://localhost:5000")
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    print(f"Starting server on port {port}")
+    app.run(host="0.0.0.0", port=port, debug=False)
