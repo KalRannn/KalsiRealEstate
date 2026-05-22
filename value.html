@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Property Value Tool | Shariya Kalsi | Winnipeg REALTOR®</title>
+<meta name="description" content="Find out your Winnipeg home's assessed value instantly — free tool by Shariya Kalsi, REALTOR® at Chapter Real Estate.">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F0EDE6;
+  --cream-2: #E8E4DC;
+  --black: #111111;
+  --red: #E63946;
+  --red-dark: #C1121F;
+  --white: #FAFAF8;
+  --gray: #888880;
+  --gray-2: #CCCAC4;
+  --border: #D4D0C8;
+  --mono: 'Space Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+  --tr: 0.15s ease;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--black);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── TOP TICKER ── */
+.top-ticker {
+  background: var(--black);
+  padding: 9px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.top-ticker-inner {
+  display: inline-flex;
+  gap: 48px;
+  animation: tickR 22s linear infinite;
+}
+@keyframes tickR { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.tick-item {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.tick-item b { color: var(--red); font-weight: 700; }
+.tick-sep { color: rgba(255,255,255,0.15); }
+
+/* ── NAV ── */
+nav {
+  background: var(--cream);
+  border-bottom: 2px solid var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 60px;
+  flex-shrink: 0;
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--black);
+}
+.nav-logo em { font-style: normal; color: var(--red); }
+.nav-back {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color var(--tr);
+}
+.nav-back:hover { color: var(--black); }
+.nav-back::before { content: '←'; }
+.nav-contact {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--red);
+  color: var(--white);
+  padding: 10px 20px;
+  transition: background var(--tr);
+}
+.nav-contact:hover { background: var(--red-dark); }
+
+/* ── PAGE LAYOUT ── */
+.page {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  flex: 1;
+  border-bottom: 2px solid var(--black);
+}
+
+/* ── LEFT — HERO + TOOL ── */
+.left {
+  border-right: 2px solid var(--black);
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-block {
+  padding: 52px 52px 40px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg-scroll {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+.hero-bg-text {
+  font-family: var(--mono);
+  font-size: 90px;
+  font-weight: 700;
+  color: var(--black);
+  opacity: 0.03;
+  white-space: nowrap;
+  animation: bgScroll 20s linear infinite;
+  letter-spacing: -0.03em;
+  user-select: none;
+}
+@keyframes bgScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.hero-tag-line {
+  display: block;
+  height: 2px;
+  background: var(--red);
+  width: 20px;
+  animation: linePulse 2s ease-in-out infinite;
+}
+@keyframes linePulse { 0%,100%{width:20px;} 50%{width:40px;} }
+
+.hero-block h1 {
+  font-family: var(--mono);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin-bottom: 16px;
+  position: relative;
+}
+.hero-block h1 em {
+  font-style: normal;
+  color: var(--red);
+  display: inline-block;
+  animation: wobble 5s ease-in-out infinite;
+}
+@keyframes wobble { 0%,100%{transform:rotate(-1.5deg) skewX(-1deg);} 50%{transform:rotate(1.5deg) skewX(1deg);} }
+
+.hero-block p {
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.75;
+  max-width: 480px;
+  position: relative;
+}
+
+/* ── TOOL BLOCK ── */
+.tool-block {
+  padding: 40px 52px 52px;
+  flex: 1;
+}
+
+/* Steps */
+.step-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+}
+.step-node { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.step-sq {
+  width: 32px; height: 32px;
+  border: 2px solid var(--border);
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  color: var(--gray-2);
+  transition: all var(--tr);
+}
+.step-sq.active { border-color: var(--red); color: var(--red); background: rgba(230,57,70,0.06); }
+.step-sq.done { border-color: var(--black); background: var(--black); color: var(--cream); }
+.step-lbl {
+  font-family: var(--mono); font-size: 8px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gray-2);
+}
+.step-dash {
+  width: 40px; height: 2px;
+  background: var(--border);
+  margin: 0 4px 20px;
+  transition: background var(--tr);
+}
+.step-dash.done { background: var(--black); }
+
+/* Panel */
+.tool-panel {
+  background: var(--black);
+  border: 2px solid var(--black);
+  padding: 28px;
+  position: relative;
+}
+.tool-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--red);
+}
+
+.form-step { display: none; }
+.form-step.vis { display: block; }
+
+.vt-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 8px;
+}
+.vt-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--white);
+  font-family: var(--mono); font-size: 14px; font-weight: 400;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color var(--tr);
+  border-radius: 0; appearance: none;
+  margin-bottom: 14px;
+}
+.vt-input:focus { border-color: var(--red); background: rgba(230,57,70,0.05); }
+.vt-input::placeholder { color: rgba(255,255,255,0.2); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.vt-hint {
+  font-family: var(--mono); font-size: 9px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.04em; font-style: italic;
+  margin-top: -8px; margin-bottom: 14px;
+}
+.vt-submit {
+  width: 100%; padding: 14px;
+  background: var(--red); color: var(--white);
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border: none; cursor: pointer;
+  transition: background var(--tr);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.vt-submit:hover:not(:disabled) { background: var(--red-dark); }
+.vt-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+.vt-privacy {
+  font-family: var(--mono); font-size: 8px;
+  color: rgba(255,255,255,0.18); letter-spacing: 0.05em;
+  margin-top: 12px; line-height: 1.6;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 12px;
+}
+.err-msg {
+  display: none;
+  background: rgba(230,57,70,0.12);
+  border: 1px solid rgba(230,57,70,0.3);
+  color: #FF8A92;
+  font-family: var(--mono); font-size: 10px;
+  padding: 10px 12px; margin-bottom: 12px;
+  letter-spacing: 0.03em; line-height: 1.5;
+}
+.err-msg.vis { display: block; }
+
+/* Loading */
+.loading-state { text-align: center; padding: 40px 20px; }
+.spinner {
+  width: 32px; height: 32px;
+  border: 2px solid rgba(255,255,255,0.08);
+  border-top-color: var(--red);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-title {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  color: var(--white); letter-spacing: 0.06em; margin-bottom: 6px;
+}
+.loading-sub {
+  font-family: var(--mono); font-size: 9px;
+  color: rgba(255,255,255,0.25); letter-spacing: 0.04em;
+}
+
+/* Result */
+.result-addr-line {
+  font-family: var(--mono); font-size: 13px; font-weight: 700;
+  color: var(--white); letter-spacing: -0.01em; margin-bottom: 4px;
+}
+.result-subt {
+  font-family: var(--mono); font-size: 9px;
+  color: rgba(255,255,255,0.25); letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 18px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.result-vals { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+.rv-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 16px; position: relative;
+}
+.rv-box::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--red);
+}
+.rv-year {
+  font-family: var(--mono); font-size: 8px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 8px;
+}
+.rv-value {
+  font-family: var(--mono); font-size: 26px; font-weight: 700;
+  color: var(--white); letter-spacing: -0.02em;
+  line-height: 1; margin-bottom: 4px;
+}
+.rv-meta { font-family: var(--mono); font-size: 9px; color: rgba(255,255,255,0.25); letter-spacing: 0.04em; }
+.result-cta-bar {
+  background: rgba(230,57,70,0.1); border: 1px solid rgba(230,57,70,0.25);
+  padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+}
+.result-cta-bar p {
+  font-family: var(--mono); font-size: 9px;
+  color: rgba(255,255,255,0.4); letter-spacing: 0.03em;
+  flex: 1; line-height: 1.5;
+}
+.reset-btn {
+  display: block; margin: 14px auto 0;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.3);
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 8px 16px; cursor: pointer;
+  transition: all var(--tr);
+}
+.reset-btn:hover { border-color: var(--red); color: var(--red); }
+
+.btn-black {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px;
+  background: var(--black); color: var(--cream);
+  border: 2px solid var(--black);
+  cursor: pointer; transition: all var(--tr);
+  display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap;
+}
+.btn-black:hover { background: var(--red); border-color: var(--red); }
+
+/* ── RIGHT — INFO PANEL ── */
+.right {
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  padding: 48px 40px;
+  gap: 0;
+}
+.right-tag {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 32px;
+}
+.why-item {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: grid; grid-template-columns: 32px 1fr; gap: 14px; align-items: start;
+}
+.why-item:first-of-type { border-top: 1px solid rgba(255,255,255,0.06); }
+.why-n {
+  font-family: var(--mono); font-size: 20px; font-weight: 700;
+  color: var(--red); line-height: 1; letter-spacing: -0.02em;
+}
+.why-t {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  color: var(--white); margin-bottom: 4px; letter-spacing: 0.01em;
+}
+.why-d { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.65; }
+
+.agent-block {
+  margin-top: auto;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.agent-label {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.18); margin-bottom: 16px;
+}
+.agent-name {
+  font-family: var(--mono); font-size: 16px; font-weight: 700;
+  color: var(--white); letter-spacing: -0.01em; margin-bottom: 4px;
+}
+.agent-title {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 18px;
+}
+.agent-contact { display: flex; flex-direction: column; gap: 8px; }
+.agent-contact-item {
+  font-family: var(--mono); font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  display: flex; align-items: center; gap: 8px;
+}
+.agent-contact-item a { color: rgba(255,255,255,0.65); transition: color var(--tr); }
+.agent-contact-item a:hover { color: var(--red); }
+.agent-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+.agent-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 20px;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--red); color: var(--white);
+  padding: 12px 20px;
+  border: none; cursor: pointer;
+  transition: background var(--tr);
+  width: 100%; justify-content: center;
+}
+.agent-cta:hover { background: var(--red-dark); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  border-top: 2px solid var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  gap: 2rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.footer-logo {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  color: var(--white);
+}
+.footer-logo em { font-style: normal; color: var(--red); }
+.footer-links { display: flex; gap: 24px; list-style: none; }
+.footer-links a {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); transition: color var(--tr);
+}
+.footer-links a:hover { color: var(--red); }
+.footer-copy {
+  font-family: var(--mono); font-size: 9px;
+  color: rgba(255,255,255,0.15); letter-spacing: 0.06em;
+}
+
+/* ── BOTTOM TICKER ── */
+.bottom-ticker {
+  background: var(--red);
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.bottom-ticker-inner {
+  display: inline-flex;
+  gap: 48px;
+  animation: tickR 18s linear infinite reverse;
+}
+.btick-item {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.btick-sep { color: rgba(255,255,255,0.3); font-size: 8px; }
+
+/* ── TOAST ── */
+#toast {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  background: var(--red); color: var(--white);
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.06em; padding: 14px 22px;
+  opacity: 0; transform: translateY(10px);
+  transition: all 0.3s ease; pointer-events: none;
+  border-left: 4px solid var(--red-dark);
+}
+#toast.show { opacity: 1; transform: translateY(0); }
+
+/* ── MOBILE ── */
+@media (max-width: 860px) {
+  nav { padding: 0 20px; }
+  .page { display: block; }
+  .left { border-right: none; }
+  .hero-block { padding: 36px 24px 28px; }
+  .tool-block { padding: 28px 24px 36px; }
+  .right { padding: 36px 24px; }
+  .two-col { grid-template-columns: 1fr; }
+  .result-vals { grid-template-columns: 1fr; }
+  footer { padding: 16px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SHARIYA <em>KALSI</em> — REALTOR®</div>
+  <a href="/" class="nav-back">Back to Main Site</a>
+  <a href="/#contact" class="nav-contact">Contact Shariya →</a>
+</nav>
+
+<!-- MAIN PAGE -->
+<div class="page">
+
+  <!-- LEFT -->
+  <div class="left">
+    <div class="hero-block">
+      <div class="hero-bg-scroll">
+        <div class="hero-bg-text">WHAT IS YOUR HOME WORTH · WHAT IS YOUR HOME WORTH · WHAT IS YOUR HOME WORTH ·&nbsp;</div>
+      </div>
+      <div class="hero-tag"><span class="hero-tag-line"></span>Free Tool · Winnipeg Only · Live Data</div>
+      <h1>WHAT IS<br>YOUR HOME<br><em>WORTH?</em></h1>
+      <p>Enter your Winnipeg property address to retrieve the official City of Winnipeg assessed value — pulled live from the municipal database. Not an estimate. Real numbers.</p>
+    </div>
+
+    <div class="tool-block">
+      <!-- Step indicators -->
+      <div class="step-bar">
+        <div class="step-node">
+          <div class="step-sq active" id="s1">01</div>
+          <div class="step-lbl">Address</div>
+        </div>
+        <div class="step-dash" id="c1"></div>
+        <div class="step-node">
+          <div class="step-sq" id="s2">02</div>
+          <div class="step-lbl">Your Info</div>
+        </div>
+        <div class="step-dash" id="c2"></div>
+        <div class="step-node">
+          <div class="step-sq" id="s3">03</div>
+          <div class="step-lbl">Result</div>
+        </div>
+      </div>
+
+      <div class="tool-panel">
+
+        <!-- Step 1: Address -->
+        <div class="form-step vis" id="fs1">
+          <label class="vt-label" for="addr">Winnipeg property address</label>
+          <input class="vt-input" type="text" id="addr" placeholder="e.g. 630 Main   or   1555 Portage" autocomplete="off">
+          <p class="vt-hint">Street number + street name. Winnipeg addresses only.</p>
+          <div class="err-msg" id="e1"></div>
+          <button class="vt-submit" onclick="step1()">Continue — Enter Your Details →</button>
+        </div>
+
+        <!-- Step 2: Lead info -->
+        <div class="form-step" id="fs2">
+          <p style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.04em;margin-bottom:18px;line-height:1.6;">To receive your assessment report, enter your contact details below. Shariya may follow up to discuss your property's market value.</p>
+          <div class="two-col">
+            <div>
+              <label class="vt-label" for="ln">Full name</label>
+              <input class="vt-input" type="text" id="ln" placeholder="Jane Smith" autocomplete="name">
+            </div>
+            <div>
+              <label class="vt-label" for="lp">Phone number</label>
+              <input class="vt-input" type="tel" id="lp" placeholder="(204) 555-0100" autocomplete="tel">
+            </div>
+          </div>
+          <label class="vt-label" for="le">Email address</label>
+          <input class="vt-input" type="email" id="le" placeholder="jane@email.com" autocomplete="email">
+          <div class="err-msg" id="e2"></div>
+          <button class="vt-submit" onclick="step2()">Reveal My Property Value →</button>
+          <p class="vt-privacy">🔒 Your info is shared only with Shariya Kalsi and is never sold or distributed to third parties. You may be contacted to discuss your property's market value.</p>
+        </div>
+
+        <!-- Loading -->
+        <div class="form-step" id="fs-load">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <div class="loading-title">QUERYING DATABASE...</div>
+            <div class="loading-sub">Connecting to City of Winnipeg · 10–25 seconds</div>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="form-step" id="fs-result">
+          <div id="result-ok">
+            <div class="result-addr-line" id="r-addr">—</div>
+            <div class="result-subt">City of Winnipeg Assessed Value</div>
+            <div class="result-vals" id="r-vals"></div>
+            <div class="result-cta-bar">
+              <p>Assessed value ≠ market value. Shariya offers free, no-obligation Comparative Market Analyses — find out what your home would actually sell for today.</p>
+            </div>
+          </div>
+          <div class="err-msg" id="e-result" style="margin-top:0;"></div>
+          <button class="reset-btn" onclick="resetTool()">← Check Another Address</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+    <div class="right-tag">Why use this tool?</div>
+
+    <div class="why-item">
+      <div class="why-n">01</div>
+      <div>
+        <div class="why-t">Live Municipal Data</div>
+        <div class="why-d">Results pulled directly from the City of Winnipeg assessment database — not an algorithm or estimate.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-n">02</div>
+      <div>
+        <div class="why-t">Both Years Shown</div>
+        <div class="why-d">See the 2026 current assessment and 2027 proposed assessment side by side.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-n">03</div>
+      <div>
+        <div class="why-t">100% Free</div>
+        <div class="why-d">No cost, no subscription, no catch. A free service from Shariya Kalsi to the Winnipeg community.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-n">04</div>
+      <div>
+        <div class="why-t">100% Confidential</div>
+        <div class="why-d">Your contact info is shared only with Shariya. No spam, no third parties, no nonsense.</div>
+      </div>
+    </div>
+
+    <div class="agent-block">
+      <div class="agent-label">Your Agent</div>
+      <div class="agent-name">Shariya Kalsi</div>
+      <div class="agent-title">REALTOR® · Property Manager · Chapter Real Estate</div>
+      <div class="agent-contact">
+        <div class="agent-contact-item"><span class="agent-dot"></span><a href="tel:2048986250">(204) 898-6250</a></div>
+        <div class="agent-contact-item"><span class="agent-dot"></span><a href="tel:2043061144">(204) 306-1144</a></div>
+        <div class="agent-contact-item"><span class="agent-dot"></span><a href="mailto:shariyakalsi541@gmail.com">shariyakalsi541@gmail.com</a></div>
+        <div class="agent-contact-item"><span class="agent-dot"></span>Unit 2 &amp; 3 – 20 St Mary Rd, Winnipeg</div>
+      </div>
+      <a href="/#contact" class="agent-cta">Contact Shariya →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SHARIYA <em>KALSI</em> — REALTOR®</div>
+  <ul class="footer-links">
+    <li><a href="/#listings">For Sale</a></li>
+    <li><a href="/#rentals">For Rent</a></li>
+    <li><a href="/#management">Management</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Shariya Kalsi · Chapter Real Estate</div>
+</footer>
+
+<!-- BOTTOM TICKER -->
+<div class="bottom-ticker">
+  <div class="bottom-ticker-inner">
+    <span class="btick-item">Shariya Kalsi <span class="btick-sep">★</span> REALTOR®</span>
+    <span class="btick-item">Chapter Real Estate <span class="btick-sep">★</span> Winnipeg</span>
+    <span class="btick-item">(204) 898-6250 <span class="btick-sep">★</span> Free Consultation</span>
+    <span class="btick-item">Buying · Selling · Renting · Managing <span class="btick-sep">★</span></span>
+    <span class="btick-item">Shariya Kalsi <span class="btick-sep">★</span> REALTOR®</span>
+    <span class="btick-item">Chapter Real Estate <span class="btick-sep">★</span> Winnipeg</span>
+    <span class="btick-item">(204) 898-6250 <span class="btick-sep">★</span> Free Consultation</span>
+    <span class="btick-item">Buying · Selling · Renting · Managing <span class="btick-sep">★</span></span>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const API = 'http://localhost:5000';
+let savedAddr = '';
+
+function showErr(id, msg) { const el = document.getElementById(id); el.textContent = msg; el.classList.add('vis'); }
+function clrErr(id) { const el = document.getElementById(id); el.textContent = ''; el.classList.remove('vis'); }
+
+function showStep(id) {
+  ['fs1','fs2','fs-load','fs-result'].forEach(x => document.getElementById(x).classList.remove('vis'));
+  document.getElementById(id).classList.add('vis');
+}
+
+function syncDots(active) {
+  const circles = ['s1','s2','s3'].map(id => document.getElementById(id));
+  const conns   = ['c1','c2'].map(id => document.getElementById(id));
+  const n = active === 'result' ? 4 : active === 'load' ? 3 : parseInt(active);
+  circles.forEach((c, i) => {
+    c.classList.remove('active','done');
+    if (i + 1 < n)      { c.classList.add('done'); c.textContent = '✓'; }
+    else if (i + 1 === n) { c.classList.add('active'); if (c.textContent === '✓') c.textContent = '0'+(i+1); }
+    else                 { if (c.textContent === '✓') c.textContent = '0'+(i+1); }
+  });
+  conns.forEach((c, i) => c.classList.toggle('done', n > i + 2 || active === 'result'));
+  if (active === 'result') {
+    circles.forEach(c => { c.classList.remove('active'); c.classList.add('done'); c.textContent = '✓'; });
+    conns.forEach(c => c.classList.add('done'));
+  }
+}
+
+function step1() {
+  clrErr('e1');
+  const a = document.getElementById('addr').value.trim();
+  if (!a || a.split(/\s+/).length < 2) {
+    showErr('e1', 'Enter a street number and name — e.g. "630 Main".');
+    return;
+  }
+  savedAddr = a;
+  showStep('fs2');
+  syncDots(2);
+}
+
+async function step2() {
+  clrErr('e2');
+  const name  = document.getElementById('ln').value.trim();
+  const phone = document.getElementById('lp').value.trim();
+  const email = document.getElementById('le').value.trim();
+  if (!name)  { showErr('e2','Please enter your full name.'); return; }
+  if (!email || !email.includes('@')) { showErr('e2','Please enter a valid email address.'); return; }
+  if (!phone) { showErr('e2','Please enter your phone number.'); return; }
+
+  showStep('fs-load');
+  syncDots('load');
+
+  try {
+    const resp = await fetch(API + '/api/assess', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address: savedAddr, name, email, phone })
+    });
+    const data = await resp.json();
+    showStep('fs-result');
+    syncDots('result');
+
+    if (data.error) {
+      document.getElementById('result-ok').style.display = 'none';
+      showErr('e-result', data.error);
+      return;
+    }
+
+    document.getElementById('result-ok').style.display = '';
+    document.getElementById('r-addr').textContent = data.property_address || savedAddr;
+
+    let html = '';
+    if (data.current)  html += `<div class="rv-box"><div class="rv-year">2026 Current Assessment</div><div class="rv-value">${data.current.value}</div><div class="rv-meta">${data.current.class} · ${data.current.status}</div></div>`;
+    if (data.proposed) html += `<div class="rv-box"><div class="rv-year">2027 Proposed Assessment</div><div class="rv-value">${data.proposed.value}</div><div class="rv-meta">${data.proposed.class} · ${data.proposed.status}</div></div>`;
+    if (!html) html = '<p style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.3);grid-column:1/-1">No assessment data found for this address.</p>';
+    document.getElementById('r-vals').innerHTML = html;
+
+  } catch(ex) {
+    showStep('fs-result');
+    document.getElementById('result-ok').style.display = 'none';
+    showErr('e-result', 'Cannot connect to the assessment server. Please ensure server.py is running on localhost:5000, or contact Shariya directly at (204) 898-6250.');
+  }
+}
+
+function resetTool() {
+  ['addr','ln','lp','le'].forEach(id => document.getElementById(id).value = '');
+  ['e1','e2','e-result'].forEach(id => clrErr(id));
+  document.getElementById('result-ok').style.display = '';
+  savedAddr = '';
+  ['s1','s2','s3'].forEach((id,i) => {
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+    el.textContent = '0'+(i+1);
+  });
+  ['c1','c2'].forEach(id => document.getElementById(id).classList.remove('done'));
+  document.getElementById('s1').classList.add('active');
+  showStep('fs1');
+}
+</script>
+</body>
+</html>

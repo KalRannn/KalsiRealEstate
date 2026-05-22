@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shariya Kalsi | REALTOR® & Property Manager | Winnipeg</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F0EDE6;
+  --cream-2: #E8E4DC;
+  --black: #111111;
+  --red: #E63946;
+  --red-dark: #C1121F;
+  --white: #FAFAF8;
+  --gray: #888880;
+  --gray-2: #CCCAC4;
+  --border: #D4D0C8;
+  --mono: 'Space Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+  --tr: 0.15s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--black);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── SCROLLING TICKER (top) ── */
+.top-ticker {
+  background: var(--black);
+  border-bottom: 2px solid var(--black);
+  padding: 9px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.top-ticker-inner {
+  display: inline-flex;
+  gap: 48px;
+  animation: tickR 22s linear infinite;
+}
+@keyframes tickR { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.tick-item {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.tick-item b { color: var(--red); font-weight: 700; }
+.tick-sep { color: rgba(255,255,255,0.15); }
+
+/* ── NAV ── */
+#nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--cream);
+  border-bottom: 2px solid var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 60px;
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  white-space: nowrap;
+}
+.nav-logo em { font-style: normal; color: var(--red); }
+.nav-links {
+  display: flex;
+  list-style: none;
+  height: 100%;
+}
+.nav-links li { height: 100%; }
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 18px;
+  border-left: 1px solid var(--border);
+  transition: color var(--tr), background var(--tr);
+}
+.nav-links a:hover { color: var(--black); background: var(--cream-2); }
+.nav-links li:last-child a { border-right: 1px solid var(--border); }
+.nav-cta {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--red);
+  color: var(--white);
+  padding: 10px 22px;
+  transition: background var(--tr);
+  margin-left: 24px;
+}
+.nav-cta:hover { background: var(--red-dark); }
+
+/* ── HERO ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  border-bottom: 2px solid var(--black);
+  min-height: 520px;
+}
+
+.hero-left {
+  border-right: 2px solid var(--black);
+  padding: 56px 52px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Big scrolling bg text */
+.hero-bg-scroll {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+.hero-bg-text {
+  font-family: var(--mono);
+  font-size: 110px;
+  font-weight: 700;
+  color: var(--black);
+  opacity: 0.035;
+  white-space: nowrap;
+  animation: bgScroll 20s linear infinite;
+  letter-spacing: -0.03em;
+  user-select: none;
+}
+@keyframes bgScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.hero-tag-line {
+  display: block;
+  height: 2px;
+  background: var(--red);
+  width: 20px;
+  animation: linePulse 2s ease-in-out infinite;
+}
+@keyframes linePulse {
+  0%, 100% { width: 20px; }
+  50% { width: 40px; }
+}
+
+h1 {
+  font-family: var(--mono);
+  font-size: clamp(44px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin-bottom: 24px;
+  position: relative;
+}
+h1 .wobble {
+  display: inline-block;
+  color: var(--red);
+  animation: wobble 5s ease-in-out infinite;
+}
+@keyframes wobble {
+  0%, 100% { transform: rotate(-1.5deg) skewX(-1deg); }
+  50% { transform: rotate(1.5deg) skewX(1deg); }
+}
+
+.hero-sub {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--gray);
+  line-height: 1.75;
+  max-width: 440px;
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 0;
+  position: relative;
+}
+.btn-black {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  background: var(--black);
+  color: var(--cream);
+  border: 2px solid var(--black);
+  cursor: pointer;
+  transition: all var(--tr);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-black:hover { background: var(--red); border-color: var(--red); }
+.btn-outline {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--black);
+  border: 2px solid var(--black);
+  cursor: pointer;
+  transition: all var(--tr);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-outline:hover { background: var(--black); color: var(--cream); }
+
+.hero-right {
+  background: var(--black);
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hero-right-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 28px;
+}
+.hero-stat {
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.hero-stat:first-of-type { border-top: 1px solid rgba(255,255,255,0.08); }
+.hero-stat-n {
+  font-family: var(--mono);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: -0.03em;
+}
+.hero-stat-n.red { color: var(--red); }
+.hero-stat-l {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.hero-contact-block {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.hero-contact-item {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-contact-item a { color: rgba(255,255,255,0.7); transition: color var(--tr); }
+.hero-contact-item a:hover { color: var(--red); }
+.hci-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+/* ── SECTION BASE ── */
+section { border-bottom: 2px solid var(--black); }
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding: 14px 40px;
+  border-bottom: 1px solid var(--border);
+  background: var(--cream-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.section-label span { color: var(--gray-2); }
+
+h2 {
+  font-family: var(--mono);
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin-bottom: 12px;
+}
+h2 em { font-style: normal; color: var(--red); }
+
+/* ── LISTINGS ── */
+#listings { }
+
+.listings-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+.listings-hd-left { padding: 40px; border-right: 1px solid var(--border); }
+.listings-hd-right {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.listings-hd-desc {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.75;
+  max-width: 380px;
+}
+.listings-note {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--gray-2);
+  letter-spacing: 0.06em;
+  margin-top: 16px;
+}
+
+/* Listing rows */
+.listing-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 140px 130px 150px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--tr);
+  position: relative;
+}
+.listing-row:hover { background: var(--white); }
+.listing-row:hover .lr-num { background: var(--red); color: var(--white); }
+.listing-row:hover .lr-arrow { opacity: 1; transform: translateX(0); }
+
+.lr-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gray-2);
+  padding: 22px 0;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  transition: all var(--tr);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lr-info { padding: 22px 28px; }
+.lr-addr {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.lr-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--gray);
+  letter-spacing: 0.04em;
+}
+.lr-specs {
+  padding: 22px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.lr-spec {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--gray);
+  letter-spacing: 0.04em;
+}
+.lr-badge-cell { padding: 22px 20px; }
+.lr-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  display: inline-block;
+}
+.badge-sale { background: var(--black); color: var(--cream); }
+.badge-rent { background: var(--red); color: var(--white); }
+.lr-price {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  padding: 22px 28px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+}
+.lr-price-sub {
+  font-size: 9px;
+  font-weight: 400;
+  color: var(--gray-2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lr-arrow {
+  position: absolute;
+  right: 28px;
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--red);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all var(--tr);
+  pointer-events: none;
+}
+
+/* ── RENTALS ── */
+#rentals { }
+
+.rentals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.rental-card {
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--tr);
+  cursor: pointer;
+}
+.rental-card:first-child { border-right: 2px solid var(--black); }
+.rental-card:hover { background: var(--white); }
+.rental-card:hover .rc-num { color: var(--red); }
+
+.rc-num {
+  font-family: var(--mono);
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--border);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  transition: color var(--tr);
+  user-select: none;
+}
+
+.rc-avail {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: #2D9B5A;
+  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.avail-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--white);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+.rc-addr {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+.rc-loc {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--gray);
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+.rc-price {
+  font-family: var(--mono);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.rc-price-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--gray);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.rc-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.rc-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.5;
+}
+.rc-detail-bullet {
+  width: 14px;
+  height: 2px;
+  background: var(--red);
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+.rc-actions { display: flex; gap: 0; }
+.rc-btn-fb {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 11px 18px;
+  background: #1877F2;
+  color: var(--white);
+  border: 2px solid #1877F2;
+  cursor: pointer;
+  transition: all var(--tr);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.rc-btn-fb:hover { background: #0d5fcb; border-color: #0d5fcb; }
+.rc-btn-call {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 11px 18px;
+  background: transparent;
+  color: var(--black);
+  border: 2px solid var(--black);
+  cursor: pointer;
+  transition: all var(--tr);
+}
+.rc-btn-call:hover { background: var(--black); color: var(--cream); }
+
+/* ── MANAGEMENT ── */
+#management { }
+
+.mgmt-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.mgmt-left {
+  padding: 56px 52px;
+  border-right: 2px solid var(--black);
+}
+.mgmt-left .section-label-inline {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mgmt-left .section-label-inline::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--red);
+}
+.mgmt-desc {
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 40px;
+}
+.mgmt-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.mgmt-list li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  align-items: start;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--black);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+.mgmt-list li:last-child { border-bottom: none; }
+.mgmt-list-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--red);
+  padding-top: 2px;
+}
+
+.mgmt-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0;
+}
+.mgmt-stat-box {
+  padding: 40px 36px;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  transition: background var(--tr);
+  position: relative;
+  overflow: hidden;
+}
+.mgmt-stat-box:nth-child(2n) { border-right: none; }
+.mgmt-stat-box:nth-child(n+3) { border-bottom: none; }
+.mgmt-stat-box:hover { background: var(--white); }
+.mgmt-stat-box:hover .msb-n { color: var(--red); }
+.msb-n {
+  font-family: var(--mono);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+  transition: color var(--tr);
+}
+.msb-l {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+.msb-d {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+.msb-bg-char {
+  position: absolute;
+  bottom: -10px;
+  right: -5px;
+  font-family: var(--mono);
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--black);
+  opacity: 0.04;
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: -0.04em;
+}
+
+/* ── VALUE TOOL ── */
+#value-tool {
+  background: var(--black);
+  border-bottom: 2px solid var(--black);
+}
+
+.vt-section-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  padding: 14px 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vt-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.vt-left {
+  padding: 56px 52px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.vt-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.vt-tag::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--red);
+}
+.vt-h2 {
+  font-family: var(--mono);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.vt-h2 em { font-style: normal; color: var(--red); }
+.vt-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+/* Steps */
+.step-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 32px;
+}
+.step-node { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.step-sq {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.25);
+  transition: all var(--tr);
+}
+.step-sq.active {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(230,57,70,0.1);
+}
+.step-sq.done {
+  border-color: var(--red);
+  background: var(--red);
+  color: var(--white);
+}
+.step-lbl {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+.step-dash {
+  width: 40px;
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  margin: 0 4px 20px;
+  transition: background var(--tr);
+}
+.step-dash.done { background: var(--red); }
+
+/* Form */
+.vt-panel {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 28px;
+  position: relative;
+}
+.vt-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--red);
+}
+.form-step { display: none; }
+.form-step.vis { display: block; }
+
+.vt-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 8px;
+}
+.vt-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color var(--tr);
+  border-radius: 0;
+  appearance: none;
+  margin-bottom: 16px;
+}
+.vt-input:focus { border-color: var(--red); background: rgba(230,57,70,0.05); }
+.vt-input::placeholder { color: rgba(255,255,255,0.2); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.vt-hint {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.04em;
+  margin-top: -10px;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.vt-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background var(--tr);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.vt-submit:hover:not(:disabled) { background: var(--red-dark); }
+.vt-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+.vt-privacy {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.18);
+  letter-spacing: 0.05em;
+  margin-top: 14px;
+  line-height: 1.6;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 12px;
+}
+.err-msg {
+  display: none;
+  background: rgba(230,57,70,0.12);
+  border: 1px solid rgba(230,57,70,0.3);
+  color: #FF8A92;
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+.err-msg.vis { display: block; }
+.loading-state { text-align: center; padding: 40px 20px; }
+.spinner {
+  width: 32px; height: 32px;
+  border: 2px solid rgba(255,255,255,0.08);
+  border-top-color: var(--red);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.loading-sub {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.04em;
+}
+
+/* Result */
+.result-addr-line {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.result-subt {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.result-vals { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.rv-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 16px;
+  position: relative;
+}
+.rv-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--red);
+}
+.rv-year {
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+.rv-value {
+  font-family: var(--mono);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.rv-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.04em;
+}
+.result-cta-bar {
+  background: rgba(230,57,70,0.12);
+  border: 1px solid rgba(230,57,70,0.25);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.result-cta-bar p {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.03em;
+  flex: 1;
+  line-height: 1.5;
+}
+.reset-btn {
+  display: block;
+  margin: 14px auto 0;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.3);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all var(--tr);
+}
+.reset-btn:hover { border-color: var(--red); color: var(--red); }
+
+/* VT right side */
+.vt-right {
+  padding: 56px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.vt-why-title {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 28px;
+}
+.vt-why-item {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.vt-why-item:first-of-type { border-top: 1px solid rgba(255,255,255,0.06); }
+.vt-why-n {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--red);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.vt-why-t {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+.vt-why-d {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.6;
+}
+
+/* ── ABOUT ── */
+#about { }
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+}
+
+.about-card-col {
+  border-right: 2px solid var(--black);
+  background: var(--black);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.about-mono-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 24px;
+}
+.about-initials {
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 24px;
+}
+.about-full-name {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.about-title-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 32px;
+}
+.about-info-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.about-info-row {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.about-info-row:last-child { border-bottom: none; }
+.air-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+.air-value {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+}
+.air-value a { color: var(--red); transition: color var(--tr); }
+.air-value a:hover { color: #ff6b76; }
+
+.about-content-col {
+  padding: 56px 52px;
+}
+.about-content-col blockquote {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--black);
+  border-left: 3px solid var(--red);
+  padding-left: 24px;
+  margin: 28px 0 32px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+.about-content-col p {
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  max-width: 520px;
+}
+.cred-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 36px;
+  border: 2px solid var(--black);
+}
+.cred-item {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border-right: 1px solid var(--black);
+  color: var(--black);
+  transition: all var(--tr);
+}
+.cred-item:last-child { border-right: none; }
+.cred-item:hover { background: var(--black); color: var(--cream); }
+
+/* ── CONTACT ── */
+#contact { }
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.contact-left {
+  padding: 56px 52px;
+  border-right: 2px solid var(--black);
+}
+.contact-left p {
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 32px;
+  max-width: 380px;
+}
+.contact-items { display: flex; flex-direction: column; }
+.contact-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.contact-item:first-child { border-top: 1px solid var(--border); }
+.ci-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-2);
+  padding-top: 1px;
+}
+.ci-value {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--black);
+}
+.ci-value a { color: var(--black); transition: color var(--tr); }
+.ci-value a:hover { color: var(--red); }
+
+.contact-right { padding: 56px 52px; }
+.contact-right .form-group { margin-bottom: 16px; }
+.c-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+.c-input {
+  width: 100%;
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--black);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color var(--tr);
+  border-radius: 0;
+  appearance: none;
+}
+.c-input:focus { border-color: var(--black); }
+.c-input::placeholder { color: var(--gray-2); }
+textarea.c-input { resize: vertical; min-height: 110px; }
+.c-two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.c-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--black);
+  color: var(--cream);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px solid var(--black);
+  cursor: pointer;
+  transition: all var(--tr);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.c-submit:hover { background: var(--red); border-color: var(--red); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  border-top: 2px solid var(--black);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.footer-col {
+  padding: 32px 40px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.footer-col:last-child { border-right: none; }
+.footer-logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.footer-logo em { font-style: normal; color: var(--red); }
+.footer-broker {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.footer-links-title {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 16px;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.04em;
+  transition: color var(--tr);
+}
+.footer-links a:hover { color: var(--red); }
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.06em;
+  margin-top: 24px;
+}
+
+/* ── BOTTOM TICKER ── */
+.bottom-ticker {
+  background: var(--red);
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.bottom-ticker-inner {
+  display: inline-flex;
+  gap: 48px;
+  animation: tickR 18s linear infinite reverse;
+}
+.btick-item {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.btick-sep { color: rgba(255,255,255,0.3); font-size: 8px; }
+
+/* ── TOAST ── */
+#toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 14px 22px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  border-left: 4px solid var(--red-dark);
+}
+#toast.show { opacity: 1; transform: translateY(0); }
+
+/* ── FADE-IN ── */
+.fade { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade.in { opacity: 1; transform: none; }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  #nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  section, .hero, .mgmt-layout, .about-layout, .contact-layout, .vt-inner { display: block; }
+  .hero-left, .hero-right, .mgmt-left, .mgmt-right,
+  .about-card-col, .about-content-col, .contact-left, .contact-right,
+  .vt-left, .vt-right { border: none; padding: 32px 20px; }
+  .hero-left { border-bottom: 2px solid var(--black); }
+  .listings-header { display: block; }
+  .listings-hd-left, .listings-hd-right { padding: 28px 20px; border: none; border-bottom: 1px solid var(--border); }
+  .listing-row { grid-template-columns: 40px 1fr 90px; }
+  .lr-specs, .lr-badge-cell { display: none; }
+  .rentals-grid { display: block; }
+  .rental-card { border: none; border-bottom: 2px solid var(--black); }
+  .mgmt-right { display: grid; grid-template-columns: 1fr 1fr; }
+  .footer { display: block; }
+  .footer-col { border: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .result-vals { grid-template-columns: 1fr; }
+  .two-col, .c-two { grid-template-columns: 1fr; }
+  .cred-strip { flex-direction: column; }
+  .cred-item { border-right: none; border-bottom: 1px solid var(--black); }
+}
+</style>
+</head>
+<body>
+
+
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">SHARIYA <em>KALSI</em> — REALTOR®</div>
+  <ul class="nav-links">
+    <li><a href="#listings">For Sale</a></li>
+    <li><a href="#rentals">For Rent</a></li>
+    <li><a href="#management">Management</a></li>
+    <li><a href="value.html">Property Value</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contact →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-bg-scroll">
+      <div class="hero-bg-text">WINNIPEG REAL ESTATE · WINNIPEG REAL ESTATE · WINNIPEG REAL ESTATE · WINNIPEG REAL ESTATE ·&nbsp;</div>
+    </div>
+    <div class="hero-tag"><span class="hero-tag-line"></span>Chapter Real Estate · Winnipeg, MB</div>
+    <h1>YOUR<br><span class="wobble">PROPERTY</span><br>EXPERT.</h1>
+    <p class="hero-sub">Buying, selling, renting, or looking for full-service property management — Shariya Kalsi is your all-in-one Winnipeg real estate professional.</p>
+    <div class="hero-btns">
+      <a href="#listings" class="btn-black">View Listings →</a>
+      <a href="value.html" class="btn-outline">Check My Value</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div>
+      <div class="hero-right-label">Active properties</div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">2</div>
+        <div class="hero-stat-l">Properties For Sale</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">2</div>
+        <div class="hero-stat-l">Properties For Rent</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n red">$1.27M+</div>
+        <div class="hero-stat-l">Total Listing Value</div>
+      </div>
+    </div>
+    <div class="hero-contact-block">
+      <div class="hero-contact-item"><span class="hci-dot"></span><a href="tel:2048986250">(204) 898-6250</a></div>
+      <div class="hero-contact-item"><span class="hci-dot"></span><a href="tel:2043061144">(204) 306-1144</a></div>
+      <div class="hero-contact-item"><span class="hci-dot"></span><a href="mailto:shariyakalsi541@gmail.com">shariyakalsi541@gmail.com</a></div>
+      <div class="hero-contact-item"><span class="hci-dot"></span>Unit 2 &amp; 3 — 20 St Mary Rd, Winnipeg</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOR SALE -->
+<section id="listings">
+  <div class="section-label">
+    Properties for sale
+    <span>All listings current as of May 2026 · Contact for showings</span>
+  </div>
+  <div class="listings-header">
+    <div class="listings-hd-left fade">
+      <h2>Current<br><em>Listings.</em></h2>
+    </div>
+    <div class="listings-hd-right fade">
+      <p class="listings-hd-desc">Active listings represented by Shariya Kalsi through Chapter Real Estate. 24-hour notice required for showings. Contact Shariya directly to arrange a viewing or request full details.</p>
+      <p class="listings-note">MLS® listings are registered through WinnipegREALTORS®. Pricing subject to change without notice.</p>
+    </div>
+  </div>
+
+  <div class="listing-row fade" onclick="window.open('https://ca.prospects.com/prospects/m.do?tk=675f563f31b1fd9a3202bb6c1852cc02','_blank')">
+    <div class="lr-num">01</div>
+    <div class="lr-info">
+      <div class="lr-addr">19 Main Street</div>
+      <div class="lr-sub">Stony Mountain, MB · R0C 3A0 · Mixed-Use Commercial</div>
+    </div>
+    <div class="lr-specs">
+      <div class="lr-spec">3,000 sqft</div>
+      <div class="lr-spec">133 ft Frontage</div>
+      <div class="lr-spec">Full Basement</div>
+    </div>
+    <div class="lr-badge-cell"><span class="lr-badge badge-sale">For Sale</span></div>
+    <div class="lr-price">
+      $874,990
+      <span class="lr-price-sub">MLS® #202608463</span>
+    </div>
+    <span class="lr-arrow">→</span>
+  </div>
+
+  <div class="listing-row fade" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    <div class="lr-num">02</div>
+    <div class="lr-info">
+      <div class="lr-addr">Gas Station &amp; Auto Repair Shop</div>
+      <div class="lr-sub">Winnipeg Area, MB · Commercial Business</div>
+    </div>
+    <div class="lr-specs">
+      <div class="lr-spec">Gas Station</div>
+      <div class="lr-spec">Auto Repair</div>
+      <div class="lr-spec">Contact for address</div>
+    </div>
+    <div class="lr-badge-cell"><span class="lr-badge badge-sale">For Sale</span></div>
+    <div class="lr-price">
+      $399,999
+      <span class="lr-price-sub">Inquire for details</span>
+    </div>
+    <span class="lr-arrow">→</span>
+  </div>
+</section>
+
+<!-- FOR RENT -->
+<section id="rentals">
+  <div class="section-label">
+    Properties for rent
+    <span>Full units · Professionally managed · Contact to book a showing</span>
+  </div>
+  <div class="rentals-grid">
+
+    <div class="rental-card fade">
+      <div class="rc-num">01</div>
+      <div class="rc-avail"><span class="avail-dot"></span>Available Now</div>
+      <div class="rc-addr">1111 Edderton Ave</div>
+      <div class="rc-loc">Fort Garry, Winnipeg, MB</div>
+      <div class="rc-price">$2,200</div>
+      <div class="rc-price-label">Per Month</div>
+      <div class="rc-details">
+        <div class="rc-detail"><span class="rc-detail-bullet"></span>3 Bedrooms · 2.5 Bathrooms · House</div>
+        <div class="rc-detail"><span class="rc-detail-bullet"></span>Full duplex unit — complete privacy, no shared spaces</div>
+        <div class="rc-detail"><span class="rc-detail-bullet"></span>Desirable Fort Garry neighbourhood</div>
+        <div class="rc-detail"><span class="rc-detail-bullet"></span>24-hour notice required for showings</div>
+      </div>
+      <div class="rc-actions">
+        <a href="https://www.facebook.com/share/1ChZrRRafv/?mibextid=wwXIfr" target="_blank" rel="noopener" class="rc-btn-fb">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          View on Facebook
+        </a>
+        <a href="tel:2048986250" class="rc-btn-call">Call Shariya</a>
+      </div>
+    </div>
+
+    <div class="rental-card fade">
+      <div class="rc-num">02</div>
+      <div class="rc-avail"><span class="avail-dot"></span>Available Now</div>
+      <div class="rc-addr">1675 Main Street</div>
+      <div class="rc-loc">Winnipeg, MB</div>
+      <div class="rc-price">$1,800</div>
+      <div class="rc-price-label">Per Month</div>
+      <div class="rc-details">
+        <div class="rc-detail"><span class="rc-detail-bullet"></span>4 Bedrooms · 2 Bathrooms · Full House</div>
+        <div class="rc-detail"><span class="rc-detail-bullet"></span>Full unit for rent — entire property is yours</div>
+        <div class="rc-detail"><span class="rc-detail-bullet"></span>Utilities not included — tenant responsible for all utilities</div>
+        <div class="rc-detail"><span class="rc-detail-bullet"></span>24-hour notice required for showings</div>
+      </div>
+      <div class="rc-actions">
+        <a href="https://www.facebook.com/share/1Djzet7QJ4/?mibextid=wwXIfr" target="_blank" rel="noopener" class="rc-btn-fb">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          View on Facebook
+        </a>
+        <a href="tel:2048986250" class="rc-btn-call">Call Shariya</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MANAGEMENT -->
+<section id="management">
+  <div class="section-label">Property management <span>Full-service · Winnipeg & area</span></div>
+  <div class="mgmt-layout">
+    <div class="mgmt-left fade">
+      <div class="section-label-inline">Services Offered</div>
+      <h2>Stress-Free<br><em>Ownership.</em></h2>
+      <p class="mgmt-desc">Shariya manages every aspect of your rental property so you don't have to — from finding great tenants to collecting rent and handling repairs. You own it; Shariya runs it.</p>
+      <ul class="mgmt-list">
+        <li><span class="mgmt-list-num">01</span>Tenant screening — credit, income &amp; reference checks</li>
+        <li><span class="mgmt-list-num">02</span>Lease preparation &amp; execution under Manitoba law</li>
+        <li><span class="mgmt-list-num">03</span>Rent collection &amp; timely owner remittance</li>
+        <li><span class="mgmt-list-num">04</span>Maintenance coordination &amp; contractor network</li>
+        <li><span class="mgmt-list-num">05</span>Routine inspections &amp; move-in/out condition reports</li>
+        <li><span class="mgmt-list-num">06</span>Vacancy advertising across Winnipeg platforms</li>
+        <li><span class="mgmt-list-num">07</span>Lease renewals &amp; annual rent adjustment guidance</li>
+        <li><span class="mgmt-list-num">08</span>Eviction proceedings &amp; RTB filings</li>
+        <li><span class="mgmt-list-num">09</span>Monthly owner statements &amp; year-end reporting</li>
+      </ul>
+      <div style="margin-top:32px">
+        <a href="#contact" class="btn-black">Request a Quote →</a>
+      </div>
+    </div>
+    <div class="mgmt-right fade">
+      <div class="mgmt-stat-box">
+        <div class="msb-bg-char">24</div>
+        <div class="msb-n">24h</div>
+        <div class="msb-l">Response Time</div>
+        <div class="msb-d">Same business-day response to all maintenance requests and tenant concerns.</div>
+      </div>
+      <div class="mgmt-stat-box">
+        <div class="msb-bg-char">MB</div>
+        <div class="msb-n">MB</div>
+        <div class="msb-l">Law Compliant</div>
+        <div class="msb-d">All leases and processes fully compliant with the Residential Tenancies Act.</div>
+      </div>
+      <div class="mgmt-stat-box">
+        <div class="msb-bg-char">∞</div>
+        <div class="msb-n">Full</div>
+        <div class="msb-l">Service</div>
+        <div class="msb-d">End-to-end management — from vacancy to monthly remittance.</div>
+      </div>
+      <div class="mgmt-stat-box">
+        <div class="msb-bg-char">YEG</div>
+        <div class="msb-n">Local</div>
+        <div class="msb-l">Winnipeg Expert</div>
+        <div class="msb-d">Deep knowledge of Winnipeg rental market, rates, and neighbourhoods.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About <span>Chapter Real Estate · Licensed REALTOR® &amp; Property Manager</span></div>
+  <div class="about-layout">
+    <div class="about-card-col fade">
+      <div class="about-mono-name">Agent Profile</div>
+      <div class="about-initials">SK</div>
+      <div class="about-full-name">Shariya Kalsi</div>
+      <div class="about-title-tag">REALTOR® · Property Manager</div>
+      <div class="about-info-list">
+        <div class="about-info-row">
+          <div class="air-label">Brokerage</div>
+          <div class="air-value">Chapter Real Estate</div>
+        </div>
+        <div class="about-info-row">
+          <div class="air-label">Office</div>
+          <div class="air-value">Unit 2 &amp; 3 – 20 St Mary Rd<br>Winnipeg, MB R2H 1P2</div>
+        </div>
+        <div class="about-info-row">
+          <div class="air-label">Mobile</div>
+          <div class="air-value"><a href="tel:2048986250">(204) 898-6250</a></div>
+        </div>
+        <div class="about-info-row">
+          <div class="air-label">Office</div>
+          <div class="air-value"><a href="tel:2043061144">(204) 306-1144</a></div>
+        </div>
+        <div class="about-info-row">
+          <div class="air-label">Email</div>
+          <div class="air-value"><a href="mailto:shariyakalsi541@gmail.com">shariyakalsi541@gmail.com</a></div>
+        </div>
+        <div class="about-info-row">
+          <div class="air-label">REALTOR.ca</div>
+          <div class="air-value"><a href="https://www.realtor.ca/agent/2152311/shariya-kalsi-unit-2-3-20-st-mary-road-winnipeg-manitoba-r2h1p2" target="_blank" rel="noopener">View Profile →</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-content-col fade">
+      <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:10px;"><span style="display:block;width:20px;height:2px;background:var(--red);"></span>About Shariya</div>
+      <h2>Dedicated.<br><em>Personal.</em><br>Results-Driven.</h2>
+      <blockquote>"Whether you're buying your first home or growing your investment portfolio, you deserve an agent who is as invested in your success as you are."</blockquote>
+      <p>Shariya Kalsi is a licensed REALTOR® with Chapter Real Estate, proudly serving buyers, sellers, investors, and tenants throughout Winnipeg and surrounding communities. With a genuine passion for real estate and a commitment to clear, honest communication, Shariya has built a reputation for going above and beyond for every client.</p>
+      <p>As both a real estate agent and property manager, Shariya offers rare continuity of expertise. Investors work with one professional who understands both how to acquire the right property and the day-to-day realities of owning rentals in Manitoba — including tenant relations, maintenance, and compliance with the Residential Tenancies Act.</p>
+      <p>Specializing in residential and commercial transactions, mixed-use properties, and full-service property management — every file handled with the same personal attention and professionalism.</p>
+      <div class="cred-strip">
+        <span class="cred-item">REALTOR® Licensed</span>
+        <span class="cred-item">Property Manager</span>
+        <span class="cred-item">Chapter Real Estate</span>
+        <span class="cred-item">Residential &amp; Commercial</span>
+        <span class="cred-item">Winnipeg &amp; Area</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get in touch <span>Response within one business day</span></div>
+  <div class="contact-layout">
+    <div class="contact-left fade">
+      <h2>Let's <em>Talk</em><br>Real Estate.</h2>
+      <p>Ready to buy, sell, rent, or have your property managed? Fill out the form or reach out directly — Shariya will get back to you within one business day.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <span class="ci-label">Mobile</span>
+          <span class="ci-value"><a href="tel:2048986250">(204) 898-6250</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Office</span>
+          <span class="ci-value"><a href="tel:2043061144">(204) 306-1144</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Email</span>
+          <span class="ci-value"><a href="mailto:shariyakalsi541@gmail.com">shariyakalsi541@gmail.com</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Address</span>
+          <span class="ci-value">Unit 2 &amp; 3 – 20 St Mary Rd<br>Winnipeg, MB R2H 1P2</span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Brokerage</span>
+          <span class="ci-value">Chapter Real Estate</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right fade">
+      <div class="form-group">
+        <label class="c-label" for="cf-name">Full Name</label>
+        <input class="c-input" type="text" id="cf-name" placeholder="Your full name">
+      </div>
+      <div class="c-two">
+        <div class="form-group">
+          <label class="c-label" for="cf-email">Email</label>
+          <input class="c-input" type="email" id="cf-email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="c-label" for="cf-phone">Phone</label>
+          <input class="c-input" type="tel" id="cf-phone" placeholder="(204) 555-0100">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="c-label" for="cf-interest">I'm interested in</label>
+        <input class="c-input" type="text" id="cf-interest" placeholder="Buying / Selling / Renting / Property Management / Other">
+      </div>
+      <div class="form-group">
+        <label class="c-label" for="cf-msg">Message</label>
+        <textarea class="c-input" id="cf-msg" placeholder="Tell Shariya what you're looking for..."></textarea>
+      </div>
+      <div class="err-msg" id="e-contact" style="border-color:rgba(230,57,70,0.3);background:rgba(230,57,70,0.08);color:var(--red);font-family:var(--mono);font-size:10px;"></div>
+      <button class="c-submit" onclick="sendContact()">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-col">
+    <div class="footer-logo">SHARIYA <em>KALSI</em></div>
+    <div class="footer-broker">REALTOR® · Chapter Real Estate · Winnipeg, MB</div>
+    <div class="footer-copy" style="margin-top:16px;">© 2026 Shariya Kalsi<br>All rights reserved.</div>
+  </div>
+  <div class="footer-col">
+    <div class="footer-links-title">Navigation</div>
+    <ul class="footer-links">
+      <li><a href="#listings">For Sale</a></li>
+      <li><a href="#rentals">For Rent</a></li>
+      <li><a href="#management">Property Management</a></li>
+      <li><a href="#value-tool">Property Value Tool</a></li>
+      <li><a href="#about">About Shariya</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <div class="footer-links-title">Contact</div>
+    <ul class="footer-links">
+      <li><a href="tel:2048986250">(204) 898-6250 — Mobile</a></li>
+      <li><a href="tel:2043061144">(204) 306-1144 — Office</a></li>
+      <li><a href="mailto:shariyakalsi541@gmail.com">shariyakalsi541@gmail.com</a></li>
+      <li><a href="#">Unit 2 &amp; 3 – 20 St Mary Rd, Winnipeg</a></li>
+      <li><a href="https://www.realtor.ca/agent/2152311/shariya-kalsi-unit-2-3-20-st-mary-road-winnipeg-manitoba-r2h1p2" target="_blank" rel="noopener">REALTOR.ca Profile →</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- BOTTOM TICKER -->
+<div class="bottom-ticker">
+  <div class="bottom-ticker-inner">
+    <span class="btick-item">Shariya Kalsi <span class="btick-sep">★</span> REALTOR®</span>
+    <span class="btick-item">Chapter Real Estate <span class="btick-sep">★</span> Winnipeg</span>
+    <span class="btick-item">(204) 898-6250 <span class="btick-sep">★</span> Call Today</span>
+    <span class="btick-item">Buying · Selling · Renting · Managing <span class="btick-sep">★</span></span>
+    <span class="btick-item">Shariya Kalsi <span class="btick-sep">★</span> REALTOR®</span>
+    <span class="btick-item">Chapter Real Estate <span class="btick-sep">★</span> Winnipeg</span>
+    <span class="btick-item">(204) 898-6250 <span class="btick-sep">★</span> Call Today</span>
+    <span class="btick-item">Buying · Selling · Renting · Managing <span class="btick-sep">★</span></span>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// Scroll animations
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+// Toast
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3800);
+}
+
+// ── Property Value Tool
+const API = 'http://localhost:5000';
+let savedAddr = '';
+
+function showErr(id, msg) { const el = document.getElementById(id); el.textContent = msg; el.classList.add('vis'); }
+function clrErr(id) { const el = document.getElementById(id); el.textContent = ''; el.classList.remove('vis'); }
+
+function showStep(id) {
+  ['fs1','fs2','fs-load','fs-result'].forEach(x => document.getElementById(x).classList.remove('vis'));
+  document.getElementById(id).classList.add('vis');
+}
+
+function syncDots(active) {
+  const circles = ['s1','s2','s3'].map(id => document.getElementById(id));
+  const conns = ['c1','c2'].map(id => document.getElementById(id));
+  const n = active === 'result' ? 4 : active === 'load' ? 3 : parseInt(active);
+  circles.forEach((c, i) => {
+    c.classList.remove('active','done');
+    if (i + 1 < n) { c.classList.add('done'); c.textContent = '✓'; }
+    else if (i + 1 === n) { c.classList.add('active'); if (c.textContent === '✓') c.textContent = '0'+(i+1); }
+    else { if (c.textContent === '✓') c.textContent = '0'+(i+1); }
+  });
+  conns.forEach((c, i) => c.classList.toggle('done', n > i + 2 || active === 'result'));
+  if (active === 'result') {
+    circles.forEach(c => { c.classList.remove('active'); c.classList.add('done'); c.textContent = '✓'; });
+    conns.forEach(c => c.classList.add('done'));
+  }
+}
+
+function step1() {
+  clrErr('e1');
+  const a = document.getElementById('addr').value.trim();
+  if (!a || a.split(/\s+/).length < 2) {
+    showErr('e1', 'Enter a street number and name — e.g. "630 Main".');
+    return;
+  }
+  savedAddr = a;
+  showStep('fs2');
+  syncDots(2);
+}
+
+async function step2() {
+  clrErr('e2');
+  const name  = document.getElementById('ln').value.trim();
+  const phone = document.getElementById('lp').value.trim();
+  const email = document.getElementById('le').value.trim();
+  if (!name)  { showErr('e2', 'Please enter your full name.'); return; }
+  if (!email || !email.includes('@')) { showErr('e2', 'Please enter a valid email address.'); return; }
+  if (!phone) { showErr('e2', 'Please enter your phone number.'); return; }
+
+  showStep('fs-load');
+  syncDots('load');
+
+  try {
+    const resp = await fetch(API + '/api/assess', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address: savedAddr, name, email, phone })
+    });
+    const data = await resp.json();
+    showStep('fs-result');
+    syncDots('result');
+
+    if (data.error) {
+      document.getElementById('result-ok').style.display = 'none';
+      showErr('e-result', data.error);
+      return;
+    }
+
+    document.getElementById('result-ok').style.display = '';
+    document.getElementById('r-addr').textContent = data.property_address || savedAddr;
+
+    let html = '';
+    if (data.current)  html += `<div class="rv-box"><div class="rv-year">2026 Current Assessment</div><div class="rv-value">${data.current.value}</div><div class="rv-meta">${data.current.class} · ${data.current.status}</div></div>`;
+    if (data.proposed) html += `<div class="rv-box"><div class="rv-year">2027 Proposed Assessment</div><div class="rv-value">${data.proposed.value}</div><div class="rv-meta">${data.proposed.class} · ${data.proposed.status}</div></div>`;
+    if (!html) html = '<p style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.3);grid-column:1/-1">No assessment data found for this address.</p>';
+    document.getElementById('r-vals').innerHTML = html;
+
+  } catch(ex) {
+    showStep('fs-result');
+    document.getElementById('result-ok').style.display = 'none';
+    showErr('e-result', 'Cannot connect to assessment server. Ensure server.py is running on localhost:5000, or contact Shariya directly at (204) 898-6250.');
+  }
+}
+
+function resetTool() {
+  ['addr','ln','lp','le'].forEach(id => document.getElementById(id).value = '');
+  ['e1','e2','e-result'].forEach(id => clrErr(id));
+  document.getElementById('result-ok').style.display = '';
+  savedAddr = '';
+  ['s1','s2','s3'].forEach((id,i) => {
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+    el.textContent = '0'+(i+1);
+  });
+  ['c1','c2'].forEach(id => document.getElementById(id).classList.remove('done'));
+  document.getElementById('s1').classList.add('active');
+  showStep('fs1');
+}
+
+// Contact form
+function sendContact() {
+  clrErr('e-contact');
+  const n = document.getElementById('cf-name').value.trim();
+  const e = document.getElementById('cf-email').value.trim();
+  if (!n || !e) { showErr('e-contact', 'Please provide at least your name and email.'); return; }
+  toast('Message sent — Shariya will be in touch within one business day.');
+  ['cf-name','cf-email','cf-phone','cf-interest','cf-msg'].forEach(id => document.getElementById(id).value = '');
+}
+</script>
+</body>
+</html>
