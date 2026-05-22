@@ -729,7 +729,7 @@ footer {
 <div id="toast"></div>
 
 <script>
-const API = 'http://localhost:5000';
+const API = 'https://kalsirealestate-production.up.railway.app';
 let savedAddr = '';
 
 function showErr(id, msg) { const el = document.getElementById(id); el.textContent = msg; el.classList.add('vis'); }
@@ -809,7 +809,6 @@ async function step2() {
   } catch(ex) {
     showStep('fs-result');
     document.getElementById('result-ok').style.display = 'none';
-    showErr('e-result', 'Cannot connect to the assessment server. Please ensure server.py is running on localhost:5000, or contact Shariya directly at (204) 898-6250.');
   }
 }
 
