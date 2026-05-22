@@ -244,9 +244,13 @@ def index():
     return send_from_directory(".", "index.html")
 
 @app.route("/value")
-@app.route("/value.html")
 def value_tool():
     return send_from_directory(".", "value.html")
+
+@app.route("/value.html")
+def value_tool_redirect():
+    from flask import redirect
+    return redirect("/value", code=301)
 
 
 @app.route("/api/assess", methods=["POST"])
