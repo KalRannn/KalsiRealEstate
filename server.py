@@ -23,9 +23,9 @@ from flask_cors import CORS
 
 # ── EMAIL CONFIG ─────────────────────────────────────────────────────────────
 SMTP_HOST     = "smtp.gmail.com"
-SMTP_PORT     = 587
+SMTP_PORT     = 465                              # SSL — works on Railway
 FROM_EMAIL    = "raloplaysgames@gmail.com"
-FROM_PASSWORD = "kgcg wsdy jkff vohl"
+FROM_PASSWORD = "kgcgwsdyjkffvohl"              # no spaces
 TO_EMAIL      = "kalsirealestateservices@gmail.com"
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -149,9 +149,8 @@ Sent from your property value tool.
             msg.attach(MIMEText(text_body, "plain"))
             msg.attach(MIMEText(html_body, "html"))
 
-            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
                 server.ehlo()
-                server.starttls()
                 server.login(FROM_EMAIL, FROM_PASSWORD)
                 server.sendmail(FROM_EMAIL, TO_EMAIL, msg.as_string())
 
