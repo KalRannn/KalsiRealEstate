@@ -1964,13 +1964,52 @@ function resetTool() {
 }
 
 // Contact form
-function sendContact() {
+const FORMSPREE_CONTACT = 'https://formspree.io/f/xwvzrrzv';
+
+async function sendContact() {
   clrErr('e-contact');
-  const n = document.getElementById('cf-name').value.trim();
-  const e = document.getElementById('cf-email').value.trim();
-  if (!n || !e) { showErr('e-contact', 'Please provide at least your name and email.'); return; }
-  toast('Message sent — Shariya will be in touch within one business day.');
-  ['cf-name','cf-email','cf-phone','cf-interest','cf-msg'].forEach(id => document.getElementById(id).value = '');
+  const name     = document.getElementById('cf-name').value.trim();
+  const email    = document.getElementById('cf-email').value.trim();
+  const phone    = document.getElementById('cf-phone').value.trim();
+  const interest = document.getElementById('cf-interest').value.trim();
+  const message  = document.getElementById('cf-msg').value.trim();
+
+  if (!name)  { showErr('e-contact', 'Please enter your name.'); return; }
+  if (!email || !email.includes('@')) { showErr('e-contact', 'Please enter a valid email.'); return; }
+
+  const btn = document.querySelector('.c-submit');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    const resp = await fetch(FORMSPREE_CONTACT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name:      name,
+        email:     email,
+        phone:     phone || 'Not provided',
+        interest:  interest || 'Not specified',
+        message:   message || 'No message provided',
+        _subject:  `New Contact — ${name} | ${interest || 'General Inquiry'}`,
+        _replyto:  email
+      })
+    });
+
+    const result = await resp.json();
+
+    if (resp.ok) {
+      toast('Message sent — Shariya will be in touch within one business day.');
+      ['cf-name','cf-email','cf-phone','cf-interest','cf-msg'].forEach(id => document.getElementById(id).value = '');
+    } else {
+      showErr('e-contact', result.error || 'Something went wrong. Please call Shariya directly at (204) 898-6250.');
+    }
+  } catch(ex) {
+    showErr('e-contact', 'Could not send message. Please call Shariya directly at (204) 898-6250.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send Message →';
+  }
 }
 </script>
 </body>
