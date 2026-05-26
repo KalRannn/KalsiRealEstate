@@ -552,6 +552,20 @@ footer {
 </head>
 <body>
 
+<!-- TOP TICKER -->
+<div class="top-ticker">
+  <div class="top-ticker-inner">
+    <span class="tick-item">Free Tool <span class="tick-sep">·</span> Winnipeg Properties Only</span>
+    <span class="tick-item">Live Municipal Database <span class="tick-sep">·</span> No Estimate — <b>Real Data</b></span>
+    <span class="tick-item">Shariya Kalsi <span class="tick-sep">·</span> Chapter Real Estate</span>
+    <span class="tick-item">(204) 898-6250 <span class="tick-sep">·</span> <b>Call Anytime</b></span>
+    <span class="tick-item">Free Tool <span class="tick-sep">·</span> Winnipeg Properties Only</span>
+    <span class="tick-item">Live Municipal Database <span class="tick-sep">·</span> No Estimate — <b>Real Data</b></span>
+    <span class="tick-item">Shariya Kalsi <span class="tick-sep">·</span> Chapter Real Estate</span>
+    <span class="tick-item">(204) 898-6250 <span class="tick-sep">·</span> <b>Call Anytime</b></span>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav>
   <div class="nav-logo">SHARIYA <em>KALSI</em> — REALTOR®</div>
@@ -640,6 +654,7 @@ footer {
             <div class="result-vals" id="r-vals"></div>
             <div class="result-cta-bar">
               <p>Assessed value ≠ market value. Shariya offers free, no-obligation Comparative Market Analyses — find out what your home would actually sell for today.</p>
+              <a href="/#contact" class="btn-black">Free CMA →</a>
             </div>
           </div>
           <div class="err-msg" id="e-result" style="margin-top:0;"></div>
@@ -677,6 +692,13 @@ footer {
     </div>
     <div class="why-item">
       <div class="why-n">04</div>
+      <div>
+        <div class="why-t">Free Market Analysis</div>
+        <div class="why-d">After your result, Shariya can provide a free CMA showing what your home would actually sell for today.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-n">05</div>
       <div>
         <div class="why-t">100% Confidential</div>
         <div class="why-d">Your contact info is shared only with Shariya. No spam, no third parties, no nonsense.</div>
@@ -730,6 +752,7 @@ footer {
 
 <script>
 const API = 'https://kalsirealestate-production.up.railway.app';
+const FORMSPREE = 'https://formspree.io/f/xwvzrrzv';
 let savedAddr = '';
 
 function showErr(id, msg) { const el = document.getElementById(id); el.textContent = msg; el.classList.add('vis'); }
@@ -782,12 +805,33 @@ async function step2() {
   syncDots('load');
 
   try {
+    // 1 — Run the scraper to get assessment data
     const resp = await fetch(API + '/api/assess', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ address: savedAddr, name, email, phone })
     });
     const data = await resp.json();
+
+    // 2 — Send lead details to Formspree (fires and forgets)
+    const current_val  = data.current  ? data.current.value  : 'N/A';
+    const proposed_val = data.proposed ? data.proposed.value : 'N/A';
+    fetch(FORMSPREE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name:           name,
+        email:          email,
+        phone:          phone,
+        address:        savedAddr,
+        property:       data.property_address || savedAddr,
+        value_2026:     current_val,
+        value_2027:     proposed_val,
+        _subject:       `New Lead — ${name} | ${savedAddr}`,
+        _replyto:       email
+      })
+    }).catch(() => {}); // silent fail — scraper result still shows
+
     showStep('fs-result');
     syncDots('result');
 
@@ -809,6 +853,7 @@ async function step2() {
   } catch(ex) {
     showStep('fs-result');
     document.getElementById('result-ok').style.display = 'none';
+    showErr('e-result', 'Cannot connect to the assessment server. Please contact Shariya directly at (204) 898-6250.');
   }
 }
 
