@@ -20,7 +20,7 @@ from flask import Flask, request, jsonify, send_from_directory, redirect
 from flask_cors import CORS
 
 # ── EMAIL CONFIG ─────────────────────────────────────────────────────────────
-RESEND_API_KEY = "re_BSZjr7NJ_BtZkYYcteFaa1r16MAZMMW5d"
+RESEND_API_KEY = ""
 FROM_EMAIL     = "onboarding@resend.dev"
 TO_EMAIL       = "kalsirealestateservices@gmail.com"
 # ─────────────────────────────────────────────────────────────────────────────
